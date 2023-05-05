@@ -8,20 +8,7 @@ Milestone 2
 Verificato il corretto funzionamento del nostro codice, spostiamo la logica in un file functions.php che includeremo poi nella pagina principale -->
 
 <?php 
-
-$length = 0;
-function getRndPass($length) {
-    $length = $_GET['passLength'];
-    $chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#!$%&=?^*';
-    $shuffledchars = str_shuffle($chars);
-    $password = substr($shuffledchars, 0, $length);
-    return $password;
-}
-
-
-
-
-
+include __DIR__.'/partials/functions/functions.php'
 ?>
 
 <!DOCTYPE html>
@@ -33,14 +20,15 @@ function getRndPass($length) {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <title>Document</title>
 </head>
-<body>
-    <h1 class="text-center">Generatore di password <span class="text-uppercase">sicurissime (?)</span></h1>
+<body class="bg-primary-subtle">
+    <h1 class="text-center mt-5">Generatore di password <span class="text-uppercase">sicurissime (?)</span></h1>
     <form action="<?php echo $_SERVER['PHP_SELF']?>" method="GET" class="d-flex flex-column align-items-center">
-        <label for="passLength">Inserire la lunghezza desiderata per la password</label>
-        <input type="number" min="8" placeholder="min 8 caratteri" name="passLength" id="passLength">
-        <button type="submit">Crea</button>
+        <label for="passLength" class="mb-3">Inserire la lunghezza desiderata per la password</label>
+        <input type="number" min="8" placeholder="min 8 caratteri" name="passLength" id="passLength" class="mb-3">
+        <button type="submit" class="btn btn-primary">Crea</button>
         <?php if (!empty($_GET['passLength']) && $_GET['passLength'] > 8) { ?>
-            <h1><?php echo getRndPass($length) ?></h1>
+            <h2>La tua nuova sicurissima password è:</h2>
+            <h4><?php echo getRndPass($length) ?></h4>
         <?php } ?>
         
     </form>
