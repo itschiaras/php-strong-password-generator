@@ -1,4 +1,5 @@
 <?php 
+
 $length = 0;
 function getRndPass($length) {
     $length = $_GET['passLength'];
@@ -7,6 +8,4 @@ function getRndPass($length) {
     $password = substr($shuffledchars, 0, $length);
     return $password;
 }
-
-
 ?>

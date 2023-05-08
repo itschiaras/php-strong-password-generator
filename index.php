@@ -8,12 +8,7 @@ Milestone 2
 Verificato il corretto funzionamento del nostro codice, spostiamo la logica in un file functions.php che includeremo poi nella pagina principale -->
 
 <?php 
-session_start();
-include __DIR__.'/partials/functions/functions.php';
-if (!empty($_GET['passLength']) && $_GET['passLength'] > 8) {
-    $_SESSION['password'] = getRndPass($length);
-}
-
+include __DIR__.'/partials/functions/functions.php'
 ?>
 
 <!DOCTYPE html>
@@ -27,14 +22,14 @@ if (!empty($_GET['passLength']) && $_GET['passLength'] > 8) {
 </head>
 <body class="bg-primary-subtle">
     <h1 class="text-center mt-5">Generatore di password <span class="text-uppercase">sicurissime (?)</span></h1>
-    <form action="results.php" method="GET" class="d-flex flex-column align-items-center">
+    <form action="<?php echo $_SERVER['PHP_SELF']?>" method="GET" class="d-flex flex-column align-items-center">
         <label for="passLength" class="mb-3">Inserire la lunghezza desiderata per la password</label>
-        <input type="number" min="8" max="20"  name="passLength" id="passLength" class=" w-25 mb-3">
+        <input type="number" min="8" placeholder="min 8 caratteri" name="passLength" id="passLength" class="mb-3">
         <button type="submit" class="btn btn-primary">Crea</button>
-        <!-- <?php if (!empty($_GET['passLength']) && $_GET['passLength'] > 8) { ?>
+        <?php if (!empty($_GET['passLength']) && $_GET['passLength'] > 8) { ?>
             <h2>La tua nuova sicurissima password è:</h2>
             <h4><?php echo getRndPass($length) ?></h4>
-        <?php } ?> -->
+        <?php } ?>
         
     </form>
    
